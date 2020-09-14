@@ -1,0 +1,187 @@
+P#7
+	Collections
+	Itertools
+	Debugging
+	Memory Model
+
+
+
+delimiter //
+create trigger prodtotalprice 
+before update 
+on 
+Product
+for each row 
+set new.totalprice = new.pqty*new.pprice;
+end;
+
+
+
+DDL
+DML
+DCL
+
+triggers
+procedures
+functions
+views -- 
+
+joins --->
+	left --> left all + right -- condition matching
+	right ---- right all + left condition matching
+	inner -- both matching -- common -- intersection
+	outer-- both unmatching-- uncommon  -- symetteric differnc
+	cartesion product -- 4*7-- 
+	full outer-- !mysql-- 4+7
+	self -- same table -->
+	
+sql -- 36-- queries-- company --- 
+	-->
+	
+	
+DCL -- grant/revoke
+
+
+SELECT user FROM mysql.user
+
+CREATE USER 'guest'@'localhost' IDENTIFIED BY 'guest123';
+
+
+
+GRANT SELECT ON dbsession.* TO 'guest'@'localhost';
+GRANT SELECT,UPDATE,DELETE ON dbsession.product TO 'guest'@'localhost';
+GRANT SELECT ON dbsession.* TO 'guest'@'localhost';
+GRANT SELECT ON dbsession.* TO 'guest'@'localhost';
+
+REVOKE SELECT ON dbsession.*  FROM 'guest'@'localhost'; 
+
+
+
+
+TRIGGERS
+PROCEDURES
+FUNCTIONS
+
+VIEWS-->    virtual tables-->
+			
+
+
+
+
+
+		functions   vs    					procedure
+		must return a value				may or may not returns
+		IN -- OPTIONAL					IN/OUT/INOUT -- OPTIONAL
+		WE CALLL FROM DML-SELECT		CANNOT BE CALLED FROM SELECT
+		FUNCTIONS--CANNOT CALL TO 		FUNCTIONS CAN BE CALLED THRU PROCEDURES
+		THE PROCEDURES
+		!-UPDATE/INSERT/DELETE			UPDATE/INSERT/DELETE
+		PROCESSS AND RETURN				SUBPROGRAM-- MULTIPLE QUERIES COMBINE
+		SELECT FUNCTIONANME(*PARAM)		CALL PROCEDURENAME()
+										CALL PROCEDURENAME(PARAM)
+										CALL PROCEDURENAME(PARAM,@V) -- SELECT @V
+										
+		
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GET_PRICE_WITH_GST`(IN p_gst double,IN p_id INT)
+BEGIN
+	declare newprice;
+	set newprice=0.0
+	select pprice*(1+p_gst) into newprice from product where pid=p_id;
+END;
+
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GET_PRICE_WITH_GST`(IN p_gst double,IN p_id INT,OUT gstamnt double)
+BEGIN
+	select pprice*(1+p_gst) into  gstamnt from product where pid=p_id;
+END
+
+
+
+DELIMITER //
+
+CREATE FUNCTION CalcIncome (p_gst double,p_pid int )
+RETURNS double
+BEGIN
+
+   DECLARE newprice double;
+   SET newprice = 0.0;
+   select pprice*(1+p_gst) into newprice where product pid = p_pid;
+   RETURN newprice;
+END; //
+
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `show_all_products`(IN p_qty INT)
+BEGIN
+	select * from product where pqty>=p_qty;
+END
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GET_PRICE_WITH_GST`(IN p_gst INT,IN p_id INT,OUT newprice double)
+BEGIN
+	select pprice*(1+p_gst) from product where pid=p_id
+END
+
+
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GET_PRICE_WITH_GST`(IN p_gst double,IN p_id INT)
+BEGIN
+	select pprice*(1+p_gst) into newprice from product where pid=p_id;
+END;
+
+
+
+
+price  = 100
+price = 100*0.18-->18
+		100+18---118
+		
+gstprice = 100*1.18
+
+
+delimiter //
+create trigger totalprice
+before insert 
+on 
+Product
+for each row 
+set new.totalprice = new.pqty*new.pprice;
+end;
+
+
+DDL - structure modifiction
+DML -- data manipulation
+DCL -- grant,revoke
+
+trigger
+
+
+procedures -- subroutines,subprograms-- multiple queries
+			group-- output--- as method
+			
+			college -- depts --  students -- 
+			
+			IN -- INPUT PARAM -- CANNOT  -- IMMUTABLE
+			OUT -- OUTPUT PARAM -- READ/MODIFY
+			INOUT -- INPUT-- OUTPUT -- IN/OUT
+			PROCEDURES--MAY OR MAY NOT RETURNS
+			
+			
+delimiter //
+create procedure show_specific_products() 
+begin 
+	select * from product; 
+end;
+
+					  
+			
+
+functions -- calculations
+			IN
+			MUST RETURN VALUE
+			
+			
+	

@@ -1,0 +1,192 @@
+IN VALUES(10,20,30) -- SPECIFIED VALUES
+BETWEEN  1 TO 40 -- RANGE
+
+
+RDBMS --
+	Paid -- costing
+	As much as data we can store..
+	relationship 
+	we can part of data.
+	we have multiple feature.
+	we can apply conditional statement..'
+	!corrupt -- 
+	server -- software -- heavy-- 
+	backup -- 
+	and so..
+	restricted access -- to specific part --
+	
+Database -- 
+							Queries
+		DDL					DML				DCL			TCL
+		[STRUCTURE]
+		CREATE				SELECT			GRANT		COMMIT
+		DROP				INSERT			REVOKE		SAVEPOINT
+		TRUNCATE			UPDATE						ROLLBACK
+		RENAME				DELETE						SET TRANSCATION
+		ALTER				MERGE
+							CALL
+		
+
+
+DML --
+	select - read all -- filtered --where --groupby[having] --joins-- orders--agr functions
+		LIKE -- 	
+				y%	-- STARTS WITH y | Y  -- binary -- only small y
+				%y	  ends with
+				%y%	-- anywhere
+				__y% -- first 2 chars can be anything-y followed anything
+				y__%	first y--then 
+				
+	insert -- add -- no where
+	
+	
+	
+	update -- modifcation -- where
+	delete -- row[where]/rows -- 
+	merge	--**
+	call	-- to call to the procedures...
+	
+	
+Procedures -- sp -- stored procedures
+		group of multiple sqls -- to perform specific task-
+		IN  OUT  INOUT
+		--NOT NECESSARY TO OUT THE VALUE.
+		
+Functions
+		calculations -- !insert/update/delete
+		MUST RETURN VALUE
+Triggers -- EVENT -- ACTION- - FUNCTINAL DEPENDENCY KIND OF
+Sequences -- AUTOFIELD -- AUTO PRIMARY KEY GENERATION.
+				NUMBER			ALL -->
+Views - VIRTUAL -- 
+		RESTRICTED ACCESS TO THE SPECIFIC COLUMNS
+		VIEWS --- MAY OR MAYNOT
+		
+Indexes
+		-- HASHTABLE-- FOR FASTER RETRIVAL.
+		
+		
+		
+		DDL -- > STRUCTURE
+				CREATE DATABASE DATABASENAME
+				DROP TABLE TABLENAME
+				TRUNCATE TABLE TABLENAME
+				RENAME  TABLENAME -- TABLES
+				
+				RENAME old_table _name To new_table_name;  
+				
+				ALTER ---> COLUMNS EITHER TO MODIFY COLUMNNAME/COLUMNSIZE/COLUMNTYPE/TABLENAME
+				ALTER TABLE table_name	ADD column_name datatype;
+				ALTER TABLE students MODIFY name VARCHAR( 30);
+				ALTER TABLE "table_name" Change "column 1" "column 2" ["Data Type"];
+				ALTER TABLE "table_name" RENAME COLUMN "column 1" TO "column 2";
+
+				change -- modify the type
+				rename -- modify the column name
+	
+
+DROP  TRUNCATE						DELETE
+	NO WHERE CONDITIONS				WHERE OR WITHOUTWHERE
+STRUCTURE+DATA
+		DATA
+		
+	
+trigger --->	event ---->action
+				age			dob
+		row level 				before 		after
+					insert		
+					update
+					delete
+					
+		statement level
+					doesnt supported in mysql
+		
+
+Keys -- single or group entities to identify any specific record
+from given table
+
+		primary -- 	
+						unique + not null + shud not be changed.
+						primary 
+								column value  -- cannot be a null
+								primary value -- cannot be a null
+		foreignkey	-- 	
+						primary of another table.
+						to maintain relationship between tables.
+							ASSOCIATIONS -- COMPOSITION/AGRGATION
+								column value  -- can be a null
+								fk value -- cannot be a null
+							
+		
+		unique		 -- 
+							unique -- single null allowed
+							can be changed.
+							
+ 		candidate -- 
+		composite
+		
+		alternate
+		super
+		
+
+
+varch
+							
+		DML --- DATA
+		DCL -- PERMISSION/ACCESS GRANT
+		TCL -- TRASCATION --
+		
+		
+
+
+
+	CREATE
+
+
+create table vendor(
+	venid  int ,
+	vennm varchar(50) not null,
+	venadr varchar(50) not null,
+	primary key(venid)
+)
+
+create table address(
+	adrid int,
+	city varchar(50),
+	state varchar(50),
+	ven_id int,
+	primary key (adrid),
+	FOREIGN KEY (ven_id) REFERENCES vendor(venid)
+)
+
+#FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+
+CREATE TABLE Product(
+	prodid int,
+	prodnm varchar(50) not null,
+	prodqty int not null,
+	prodprice float not null,
+	prodcat varchar(50) not null,
+	prodbcode varchar(50) not null unique,
+	primary key(prodid),
+	
+);
+
+
+ALTER TABLE prod_info	ADD ven_id int;
+
+ALTER TABLE prod_info
+ADD FOREIGN KEY (ven_id) REFERENCES vendor(venid);
+
+
+ALTER TABLE PRODUCT	ADD PRODVEN VARCHAR(50);
+
+insert into prod_info values
+(102,'AAA',12,292.34,'A','4as12as','flip'),
+(103,'CXAAAA',142,2692.34,'A','34r12as','flip'),
+(104,'AA3AA',1,2492.34,'A','5r12as','flip'),
+(105,'A3AAA',2,2952.34,'A','4xr12as','flip')
+
+
+
+		
